@@ -1,0 +1,130 @@
+-gallery_images = ["club-sandwich.jpg","papas.jpg","hamburger.jpg","panini.jpg","combo.jpg"]
+<!DOCTYPE html>
+%html{:lang => "en"}
+%head
+	%meta{:charset => "UTF-8"}/
+	%title La mejor comida en Restaurante Sofia
+	%meta{name:"description", content:"Come rico en el mejor restaurante"}
+	%meta{name:"viewport", content:"width=device-width, initial-scale=1"}
+	%link{:rel => "stylesheet", :href => "css/normalize.css"}/
+	%link{:rel => "stylesheet", :href => "css/bootstrap.css"}/
+	%link{:rel => "stylesheet", :href => "//cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css"}/
+	%link{:rel => "stylesheet", :href => "css/style.css"}/
+	%script{:src => "js/vendor/modernizr-3.5.0.min.js"}
+	%meta{:"data-name" => "image-counter", content: "#{gallery_images.size - 1}"}
+%body
+	="<!--[if lt IE 9]>" 
+	%p{class:"browserupgrade"} 
+		You are using an 
+		%strong outdated Please 
+		%a{:href => "https://browsehappy.com/"} 
+			upgrade your browser 
+		to improve your experience and security.
+	="<![endif]-->"
+	.video-container
+		%video{autoplay:true,loop:true,width:"1280",height:"780",poster:'videos/images/bbq.jpg'}
+			%source{src:"videos/mp4/bbq.mp4",type:"video/mp4"}
+			%source{src:"videos/webm/bbq.webm",type:"video/webm"}
+	.row.full-height.middle-xs.center-xs.relative.up#home
+		.col-xs-12
+			.box.white-text
+				%img{:src => "images/logo.png", :alt => "logo restaurante Sofia",width:200}/
+				%h1.dancing-script.title.no-margin Restaurante Sofía
+				%p#is-open 
+					%i.glyphicon.glyphicon-time 
+					Abierto ahora
+		%nav.fixed.top.right.white-text.navigation#navigation
+			-menu = ["Inicio","Menú","Galería","Contacto","Como llegar"]
+			%ul.list-inline
+				-menu.each do |item|
+					%li
+						%a{:href => ""}= item
+		.absolute.black.large-padding.white-text.full-width#description
+			.row.middle-xs.center-xs
+				.col-xs-7-col-sm-6.white-text.medium
+					Atención de cálidad y comida preparada por artistas.
+				.col-xs.hidden#sticky-navigation
+					.box
+						%nav.text-right.navigation
+							%ul.list-inline
+								-menu.each do |item|
+									%li
+										%a{:href => ""}= item
+	.text-center.relative#menu
+		.absolute.white#menu-title
+			%h2.dancing-script Menú
+		-menu_photos = [{name:"Club sandwich",image:"club-sandwich",pricing:"10.00"},{name:"combo",image:"combo",pricing:"10.00"},{name:"hamburger",image:"hamburger",pricing:"10.00"},{name:"hot-cakes",image:"hot-cakes",pricing:"10.00"},{name:"panini",image:"panini",pricing:"10.00"},{name:"papas",image:"papas",pricing:"10.00"},{name:"combo",image:"combo",pricing:"10.00"},{name:"Club sandwich",image:"hot-cakes",pricing:"10.00"}]	
+		.row
+			-menu_photos.each do |photo|
+				.col-md-4.col-lg-3.col-sm-6.col-xs-12.food{style:"background-image:url(images/food/#{photo[:image]}-thumb.jpg)"}
+					.screen
+						.row.middle-xs.full-height
+							.col-xs-12
+								.box
+									%h3.white-text.dancing-script.subtitle=photo[:name]
+									%p.no-margin.white-text=photo[:pricing] + "€"
+	#gallery
+		.inner
+			-gallery_images.each do |image|
+				.image{style:"background-image:url(images/food/#{image})"}			
+	.container
+		.card.white.black-text.text-center.relative
+			%h3.medum.slim
+				En
+				%strong.dancing-script.medium Restaurante Sofía
+				cocinar no es una profesíon, no es una técnica, es una
+				%strong.dancing-script.medium arte.
+			%p.top-space
+				Lorem Khaled Ipsum is a major key to success. Fan luv. A major key, never panic. Don’t panic, when it gets crazy and rough, don’t panic, stay calm. Don’t ever play yourself. I’m up to something. Find peace, life is like a water fall, you’ve gotta flow. Learning is cool, but knowing is better, and I know the key to success. Major key, don’t fall for the trap, stay focused. It’s the ones closest to you that want to see you fail. It’s important to use cocoa butter. It’s the key to more success, why not live smooth? Why live rough?...
+				%strong.dancing-script.medium Jhoseph - Chef.
+	.black.white-text.full-height#contact
+		.row.middle-xs.full-height
+			.col-xs-12
+				.box
+					%p.text-center.medium#info-contacto
+						Presiona enter para rellenar el campo correspondiente
+					%form{:class=>"step-form",:action => "https://formspree.io/jhoseph.dev@gmail.com",method:"POST",id:"contact-form"}
+						.row.center-xs
+							.col-xs-2.col-md-1
+								.box.text-center
+									-3.times do |i|
+										-if i == 0
+											.path-step.active
+										-else
+											.path-step
+							.col-xs-5
+								.box
+									%fieldset.step.active
+										%input{:class=>" input",:type => "email",name:"email",placeholder:"Correo electronico",:required=>true}/
+									%fieldset.step
+										%input{:class=>"input",:type => "text",name:"name",placeholder:"Nombre",:required=>true}/
+									%fieldset.step
+										%textarea{:class=>"input",:name => "body",placeholder:"Tu mensaje...",:required=>true}
+									%div
+										%button{type:"submit",class:"btn-submit"} Enviar!
+	#location
+		#map
+		#menssage.black.large-padding.white-text.text-center.medium
+	%script{src:"https://code.jquery.com/jquery-3.2.1.min.js", integrity:"sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=",crossorigin:"anonymous"}
+	%script
+		window.jQuery || document.write("<script scr='/js/vendor/jquery-3.2.1.min.js'><\/script>")
+	%script{src:"js/form_object.js"}
+	%script{src:"js/steps.js"}
+	%script{src:"js/main.js"}
+	%script{src:"https://maps.googleapis.com/maps/api/js?key=AIzaSyBCsDCtpe5dkIYDwr6KbqJ0I77uj9Y1kSg"}
+	%script{src:"js/maps.js"}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

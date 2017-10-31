@@ -1,0 +1,1 @@
+{"version":3,"sources":["..\\js\\main.js"],"names":["$","window","scroll","console","log"],"mappings":";;CAAC;IAEAA,EAAEC,QAAQC,OAAO;QAChBC,QAAQC,IAAI","sourcesContent":[";(function(){\r\n\tlet sticky = false\r\n\t$(window).scroll(()=>{\r\n\t\tconsole.log(\"wiii\")\r\n\t})\r\n})()"]}
